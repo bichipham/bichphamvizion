@@ -19,7 +19,7 @@ function App() {
     {url: "assets/360images/1.jpeg", toIndex: 1},
     {url: "assets/360images/2.jpeg", toIndex: 2},
     {url: "assets/360images/3.jpeg", toIndex: 3},
-    {url: "assets/360images/3.jpeg", toIndex: 0}
+    {url: "assets/360images/4.jpeg", toIndex: 0}
   ];
 
   const [currentImage, setCurrentImage] = useState(imageList[0]);
