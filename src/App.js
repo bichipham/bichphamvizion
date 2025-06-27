@@ -37,9 +37,10 @@ function App() {
             src="/assets/footstep.png"
             alt="Logo"
             style={{
-              width: "60px",
-              height: "60px",
+              width: "45px",
+              height: "45px",
               borderRadius: "12px",
+              transform: "rotateX(60deg)",
               boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             }}
           />
