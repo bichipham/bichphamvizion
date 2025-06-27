@@ -8,7 +8,7 @@ const Sphere360 = ({ imageUrl }) => {
   const texture = useTexture(imageUrl);
 
   return (
-    <Sphere args={[5, 64, 64]}>
+    <Sphere args={[10, 64, 64]}>
       <meshBasicMaterial map={texture} side={THREE.BackSide} />
     </Sphere>
   );
@@ -27,21 +27,21 @@ function App() {
   return (
     <>
       <Canvas style={{ width: "100vw", height: "100vh" }}>
+         <ambientLight intensity={0.6} />
+        <pointLight position={[10, 10, 10]} />
         <Suspense fallback={null}>
           <Sphere360 imageUrl={currentImage?.url} />
           <OrbitControls enableZoom={false} />
         </Suspense>
-        <Html position={[1,-2,1]} transform occlude>
+        <Html position={[1, -12, -15]} center>
           <img
             onClick={() => setCurrentImage(imageList[currentImage?.toIndex])}
             src="/assets/footstep.png"
             alt="Logo"
             style={{
-              width: "45px",
-              height: "45px",
-              borderRadius: "12px",
-              transform: "rotateX(60deg)",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+              width: "80px",
+              height: "80px",
+              transform: "rotateX(60deg) rotateZ(-10deg)",
             }}
           />
         </Html>
