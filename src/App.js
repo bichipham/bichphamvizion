@@ -8,7 +8,7 @@ const Sphere360 = ({ imageUrl }) => {
   const texture = useTexture(imageUrl);
 
   return (
-    <Sphere args={[5, 64, 64]} scale={[-1, 1, 1]}>
+    <Sphere args={[5, 64, 64]}>
       <meshBasicMaterial map={texture} side={THREE.BackSide} />
     </Sphere>
   );
