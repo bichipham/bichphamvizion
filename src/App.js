@@ -1,48 +1,55 @@
-
-import './App.css';
-import React, { Suspense, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sphere, useTexture } from '@react-three/drei'
-import * as THREE from 'three'
+import "./App.css";
+import React, { Suspense, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Sphere, useTexture, Html } from "@react-three/drei";
+import * as THREE from "three";
 
 const Sphere360 = ({ imageUrl }) => {
-  const texture = useTexture(imageUrl)
+  const texture = useTexture(imageUrl);
 
   return (
     <Sphere args={[5, 64, 64]} scale={[-1, 1, 1]}>
       <meshBasicMaterial map={texture} side={THREE.BackSide} />
     </Sphere>
-  )
-}
+  );
+};
 
 function App() {
-
   const imageList = [
-    'assets/360images/1.jpeg',
-    'assets/360images/2.jpeg',
-    'assets/360images/3.jpeg',
-  ]
+    {url: "assets/360images/1.jpeg", toIndex: 1},
+    {url: "assets/360images/2.jpeg", toIndex: 2},
+    {url: "assets/360images/3.jpeg", toIndex: 3},
+    {url: "assets/360images/3.jpeg", toIndex: 0}
+  ];
 
- const [currentImage, setCurrentImage] = useState(imageList[0])
+  const [currentImage, setCurrentImage] = useState(imageList[0]);
 
   return (
     <>
-      {/* <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 1 }}>
-        {imageList.map((img, idx) => (
-          <button key={idx} onClick={() => setCurrentImage(img)} style={{ marginRight: 8 }}>
-            Scene {idx + 1}
-          </button>
-        ))}
-      </div> */}
-
-      <Canvas style={{ width: '100vw', height: '100vh' }}>
+      <Canvas style={{ width: "100vw", height: "100vh" }}>
         <Suspense fallback={null}>
-          <Sphere360 imageUrl={currentImage} />
+          <Sphere360 imageUrl={currentImage?.url} />
           <OrbitControls enableZoom={false} />
         </Suspense>
+        <Html position={[1,-2,1]} transform occlude>
+          <img
+            onClick={() => setCurrentImage(imageList[currentImage?.toIndex])}
+            src="/assets/footstep.png"
+            alt="Logo"
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+            }}
+          />
+        </Html>
       </Canvas>
+      <a href="https://sample.com" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/logo/logo.png" alt="Logo" className="fixed-logo" />
+      </a>
     </>
-  )
+  );
 }
 
 export default App;
